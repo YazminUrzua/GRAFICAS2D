@@ -1,4 +1,4 @@
-package GRAFICAS2D.casita;
+package PARCIALI;
 
 import javax.swing.*;
 import java.awt.*;

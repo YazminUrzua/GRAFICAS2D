@@ -1,7 +1,5 @@
-package GRAFICAS2D.casita;
-
+package PARCIALI;
 import static java.awt.Color.blue;
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -13,6 +11,7 @@ public class pixel extends javax.swing.JFrame{
     JFrame panel = new JFrame();
     private BufferedImage buffer;
     private Graphics graPixel;
+   
 
     
     public pixel() {
@@ -26,6 +25,8 @@ public class pixel extends javax.swing.JFrame{
         setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
+         
+        
 
         buffer = new BufferedImage(1,1, BufferedImage.TYPE_INT_RGB);
         graPixel = (Graphics2D) buffer.createGraphics();
@@ -34,13 +35,16 @@ public class pixel extends javax.swing.JFrame{
     public void putPixel( int x, int y, Color c){
         buffer.setRGB(0, 0, c.getRGB());
         this.getGraphics().drawImage(buffer, x, y, this);
+       
     }
     
     public void paint(Graphics g){
         super.paint(g);
         putPixel(100,100, blue);
+
     }
     public static void main(String[] args) {
+        
         new pixel();
     }
 }
