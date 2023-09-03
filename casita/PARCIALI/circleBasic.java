@@ -13,11 +13,17 @@ public class circleBasic {
         Color color = Color.BLUE;
 
         for (int x = centerX - radius; x <= centerX + radius; x++) {
+            
             for (int y = centerY - radius; y <= centerY + radius; y++) {
-                pixel.putPixel(x, y, color);
+                int dx = x - centerX;
+                int dy = y - centerY;
+                
+                if (dx * dx + dy * dy <= radius * radius) {
+                     pixel.putPixel(x, y, color);
+                }
+                
             }
-        }
-         pixel.putPixel(centerX, centerY, Color.ORANGE);
+        } pixel.putPixel(centerX, centerY, Color.ORANGE);
     }
 
     public static void main(String[] args) {
