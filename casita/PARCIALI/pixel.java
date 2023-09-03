@@ -22,7 +22,7 @@ public class pixel extends javax.swing.JFrame{
         
         setTitle("Pixel");
         setSize(500,500);
-        setResizable(false);
+        setResizable(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
          
@@ -37,10 +37,11 @@ public class pixel extends javax.swing.JFrame{
         this.getGraphics().drawImage(buffer, x, y, this);
        
     }
+
     
     public void paint(Graphics g){
         super.paint(g);
-        putPixel(100,100, blue);
+        putPixel(0,0, Color.RED);
 
     }
     public static void main(String[] args) {

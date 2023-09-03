@@ -21,7 +21,7 @@ public class RectLine extends Frame {
 
         for (int x = x1; x <= x2; x++) {
             int y = (int) (a * x + b);
-            pixel.putPixel(x, y, Color.BLUE);
+            pixel.putPixel(x, y, Color.green);
         }
     }
 
