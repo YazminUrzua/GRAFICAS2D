@@ -30,7 +30,7 @@ public class BresenhamLine extends javax.swing.JFrame {
             }
         }
 
-        pixel.putPixel(x2, y2, Color.green);
+       // pixel.putPixel(x2, y2, Color.green);
     }
 
     public static void main(String[] args) {
