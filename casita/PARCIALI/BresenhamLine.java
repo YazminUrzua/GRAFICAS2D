@@ -12,7 +12,7 @@ public class BresenhamLine extends javax.swing.JFrame {
         int dx = Math.abs(x2 - x1);
         int dy = Math.abs(y2 - y1);
         int err = dx - dy;
-        int xStep = x1 < x2 ? 1 : -1;
+        int xStep = x1 < x2 ? 1 : -1; //si x1<x2 entonces se tomará 1 sino -1
         int yStep = y1 < y2 ? 1 : -1;
 
         while (x1 != x2 || y1 != y2) {
@@ -30,7 +30,7 @@ public class BresenhamLine extends javax.swing.JFrame {
             }
         }
 
-        pixel.putPixel(x2, y2, Color.cyan);
+        pixel.putPixel(x2, y2, Color.green);
     }
 
     public static void main(String[] args) {
