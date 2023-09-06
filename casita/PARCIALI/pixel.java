@@ -11,11 +11,13 @@ public class pixel extends javax.swing.JFrame{
     JFrame panel = new JFrame();
     private BufferedImage buffer;
     private Graphics graPixel;
+
    
 
     
     public pixel() {
         init();
+        
     }
 
     public void init(){
@@ -25,6 +27,7 @@ public class pixel extends javax.swing.JFrame{
         setResizable(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
+        
          
         
 
@@ -41,7 +44,7 @@ public class pixel extends javax.swing.JFrame{
     
     public void paint(Graphics g){
         super.paint(g);
-        putPixel(0,0, Color.RED);
+        putPixel(10,10, Color.RED);
 
     }
     public static void main(String[] args) {
