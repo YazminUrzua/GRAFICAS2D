@@ -12,12 +12,7 @@ public class simpleCircle {
     public void drawCircle(int xc, int yc, int radio) {
         for (int x = -radio; x <= radio; x++) {
             int y = (int) Math.round(Math.sqrt(radio * radio - x * x));
-            // Dibuja los puntos simétricos en los cuatro cuadrantes
-           /*  pixel.putPixel(xc + x, yc + y, Color.ORANGE);
-            pixel.putPixel(xc + x, yc - y, Color.ORANGE);
-            pixel.putPixel(xc - x, yc + y, Color.ORANGE);
-            pixel.putPixel(xc - x, yc - y, Color.ORANGE);
-*/
+         
             //son ocho cuadrantes para que salga completo
             pixel.putPixel(xc + x, yc + y, Color.ORANGE);
             pixel.putPixel(xc - x, yc + y, Color.ORANGE);
