@@ -47,9 +47,9 @@ public class middleCircle {
         
         middleCircle drawer = new middleCircle();
 
-        int centerX = 80;
-        int centerY = 80;
-        int radius = 30;
+        int centerX = 50;
+        int centerY = 50;
+        int radius = 40;
         
 
         drawer.drawCircle(centerX, centerY, radius);
