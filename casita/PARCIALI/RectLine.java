@@ -10,7 +10,7 @@ public class RectLine extends Frame {
 
     public RectLine() {
 
-        pixel = new PARCIALI.pixel(); // Crear una instancia de la clase Pixel
+       pixel = new PARCIALI.pixel(); // Crear una instancia de la clase Pixel
     }
 
     public void algorithmRect(int x1, int y1, int x2, int y2) {

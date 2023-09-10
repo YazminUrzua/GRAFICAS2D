@@ -6,7 +6,7 @@ public class simpleCircle {
     private PARCIALI.pixel pixel;
 
     public simpleCircle() {
-        pixel = new PARCIALI.pixel();
+       pixel = new PARCIALI.pixel();
     }
 
     public void drawCircle(int xc, int yc, int radio) {
@@ -37,10 +37,16 @@ public class simpleCircle {
     public static void main(String[] args) {
         simpleCircle drawer = new simpleCircle();
 
-        int centerX = 80;
-        int centerY = 80;
-        int radius = 40;
+        //int centerX = 80;
+        //int centerY = 80;
+        //int radius = 40;
 
-        drawer.drawCircle(centerX, centerY, radius);
+
+        int centerX ;
+        int centerY ;
+        int radius ;
+
+        //drawer.drawCircle(centerX, centerY, radius);
+         drawer.drawCircle(80, 80, 40);
     }
 }
