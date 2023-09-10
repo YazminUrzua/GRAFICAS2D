@@ -2,10 +2,10 @@ package PARCIALI;
 
 import java.awt.Color;
 
-public class DrawRectangle {
+public class Rectangle {
     private pixel pixel;
 
-    public DrawRectangle() {
+    public Rectangle() {
         pixel = new pixel();
     }
 
@@ -28,7 +28,7 @@ public class DrawRectangle {
     }
 
     public static void main(String[] args) {
-        DrawRectangle drawer = new DrawRectangle();
+        Rectangle drawer = new Rectangle();
 
         int centerX = 150;
         int centerY = 150;

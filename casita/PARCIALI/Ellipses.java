@@ -2,10 +2,10 @@ package PARCIALI;
 
 import java.awt.Color;
 
-public class DrawEllipses {
+public class Ellipses {
     private pixel pixel;
 
-    public DrawEllipses() {
+    public Ellipses() {
         pixel = new pixel();
     }
 
@@ -22,7 +22,7 @@ public class DrawEllipses {
     }
 
     public static void main(String[] args) {
-        DrawEllipses drawer = new DrawEllipses();
+        Ellipses drawer = new Ellipses();
 
         int centerX = 150;
         int centerY = 150;
