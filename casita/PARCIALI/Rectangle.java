@@ -36,6 +36,6 @@ public class Rectangle {
         int height = 60;
 
         drawer.drawRectangle(centerX, centerY, width, height);
-        //pixel.display(); // Muestra los píxeles dibujados
+        
     }
 }
