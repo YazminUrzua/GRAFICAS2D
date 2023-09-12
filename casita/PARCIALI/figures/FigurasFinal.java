@@ -6,7 +6,7 @@ public class FigurasFinal {
     public static void main(String[] args) {
        
             Drawfiguras frame = new Drawfiguras();
-            //frame.setVisible(false);
+           
     
             frame.algorithmRect(30,80, 160, 260);
             frame.algorithmRect(170, 100, 330, 100);
