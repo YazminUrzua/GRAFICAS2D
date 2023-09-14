@@ -10,8 +10,9 @@ public class PolarCoordinatesCircle {
     }
 
     public void drawCircle(int xc, int yc, int radius) {
-        for (int angle = 0; angle < 360; angle++) {
-            double radians = Math.toRadians(angle);
+        //Ciclo for que recorre seún los pasos establecidos
+        for (int angulo = 0; angulo < 360; angulo++) {
+            double radians = Math.toRadians(angulo);
             int x = (int) (radius * Math.cos(radians));
             int y = (int) (radius * Math.sin(radians));
 

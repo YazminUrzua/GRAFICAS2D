@@ -87,17 +87,17 @@ public class Drawfiguras extends javax.swing.JFrame{
     }
 
     public void drawRectangle(int centerX, int centerY, int width, int height) {
-        int halfWidth = width / 2;
-        int halfHeight = height / 2;
+        int ancho = width / 2;
+        int alt = height / 2;
 
         // Dibuja los cuatro lados del rectángulo
-        for (int x = centerX - halfWidth; x <= centerX + halfWidth; x++) {
-            putPixel(x, centerY - halfHeight, Color.red);
-            putPixel(x, centerY + halfHeight, Color.red);
+        for (int x = centerX - ancho; x <= centerX + ancho; x++) {
+            putPixel(x, centerY - alt, Color.blue);
+            putPixel(x, centerY + alt, Color.blue);
         }
-        for (int y = centerY - halfHeight; y <= centerY + halfHeight; y++) {
-            putPixel(centerX - halfWidth, y, Color.red);
-            putPixel(centerX + halfWidth, y, Color.red);
+        for (int y = centerY - alt; y <= centerY + alt; y++) {
+            putPixel(centerX - ancho, y, Color.blue);
+            putPixel(centerX + ancho, y, Color.blue);
         }
 
         // Pinta las coordenadas del centro

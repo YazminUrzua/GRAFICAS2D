@@ -10,17 +10,17 @@ public class Rectangle {
     }
 
     public void drawRectangle(int centerX, int centerY, int width, int height) {
-        int halfWidth = width / 2;
-        int halfHeight = height / 2;
+        int ancho = width / 2;
+        int alt = height / 2;
 
         // Dibuja los cuatro lados del rectángulo
-        for (int x = centerX - halfWidth; x <= centerX + halfWidth; x++) {
-            pixel.putPixel(x, centerY - halfHeight, Color.blue);
-            pixel.putPixel(x, centerY + halfHeight, Color.blue);
+        for (int x = centerX - ancho; x <= centerX + ancho; x++) {
+            pixel.putPixel(x, centerY - alt, Color.blue);
+            pixel.putPixel(x, centerY + alt, Color.blue);
         }
-        for (int y = centerY - halfHeight; y <= centerY + halfHeight; y++) {
-            pixel.putPixel(centerX - halfWidth, y, Color.blue);
-            pixel.putPixel(centerX + halfWidth, y, Color.blue);
+        for (int y = centerY - alt; y <= centerY + alt; y++) {
+            pixel.putPixel(centerX - ancho, y, Color.blue);
+            pixel.putPixel(centerX + ancho, y, Color.blue);
         }
 
         // Pinta las coordenadas del centro

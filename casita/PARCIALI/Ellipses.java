@@ -11,9 +11,9 @@ public class Ellipses {
 
     public void drawEllipse(int centerX, int centerY, int semiMajorAxis, int semiMinorAxis) {
         //para establecer las veces que se dara la vuelta 
-        for (double theta = 0; theta <= 2 * Math.PI; theta += 0.01) {
-            double x = centerX + semiMajorAxis * Math.cos(theta);
-            double y = centerY + semiMinorAxis * Math.sin(theta);
+        for (double angulo = 0; angulo <= 2 * Math.PI; angulo += 0.01) {
+            double x = centerX + semiMajorAxis * Math.cos(angulo);
+            double y = centerY + semiMinorAxis * Math.sin(angulo);
             pixel.putPixel((int) x, (int) y, Color.magenta);
         }
 

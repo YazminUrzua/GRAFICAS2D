@@ -29,8 +29,6 @@ public class pixel extends javax.swing.JFrame{
         setVisible(true);
         
          
-        
-
         buffer = new BufferedImage(1,1, BufferedImage.TYPE_INT_RGB);
         graPixel = (Graphics2D) buffer.createGraphics();
     }
