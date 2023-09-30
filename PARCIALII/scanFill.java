@@ -1,15 +1,13 @@
 package PARCIALII;
-
-
 import static java.awt.Color.blue;
 import java.awt.Color;
 
 public class scanFill {
-    private PARCIALII.pixel pixel; // Instancia de la clase Pixel
+    private PARCIALI.pixel pixel; // Instancia de la clase Pixel
 
 
-      public scanFill(){
-    pixel = new PARCIALII.pixel();
+public scanFill(){
+    pixel = new PARCIALI.pixel();
 }
     public void drawCircle(int xc, int yc, int radio) {
         for (int x = -radio; x <= radio; x++) {
