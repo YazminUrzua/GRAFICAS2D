@@ -2,20 +2,14 @@ package PARCIALI;
 
 import java.awt.Color;
 
-public class Ellipses {
+public class EllipsesFill {
     private pixel pixel;
 
-    public Ellipses() {
+    public EllipsesFill() {
         pixel = new pixel();
     }
 
     public void drawEllipse(int centerX, int centerY, int semiMajorAxis, int semiMinorAxis) {
-        for (double angulo = 0; angulo <= 2 * Math.PI; angulo += 0.01) {
-            double x = centerX + semiMajorAxis * Math.cos(angulo);
-            double y = centerY + semiMinorAxis * Math.sin(angulo);
-            pixel.putPixel((int) x, (int) y, Color.magenta);
-        }
-
         // Rellena la elipse
         for (int x = centerX - semiMajorAxis; x <= centerX + semiMajorAxis; x++) {
             for (int y = centerY - semiMinorAxis; y <= centerY + semiMinorAxis; y++) {
@@ -29,10 +23,17 @@ public class Ellipses {
 
         // Pinta las coordenadas del centro
         pixel.putPixel(centerX, centerY, Color.BLACK);
+        
+        // Dibuja la circunferencia de la elipse
+        for (double angulo = 0; angulo <= 2 * Math.PI; angulo += 0.01) {
+            double x = centerX + semiMajorAxis * Math.cos(angulo);
+            double y = centerY + semiMinorAxis * Math.sin(angulo);
+            pixel.putPixel((int) x, (int) y, Color.magenta);
+        }
     }
 
     public static void main(String[] args) {
-        Ellipses drawer = new Ellipses();
+        EllipsesFill drawer = new EllipsesFill();
 
         int centerX = 150;
         int centerY = 150;
