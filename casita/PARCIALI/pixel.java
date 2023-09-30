@@ -38,13 +38,26 @@ public class pixel extends javax.swing.JFrame{
 
     
     public void paint(Graphics g){
-        super.paint(g);
+        paint(g);
         putPixel(10,10, Color.RED);
 
     }
+
+    public Color getPixelColor(int x, int y) {
+        // Obtén el color del píxel en la ubicación (x, y) del buffer de la imagen
+        if (x >= 0 && x < buffer.getWidth() && y >= 0 && y < buffer.getHeight()) {
+            int rgb = buffer.getRGB(x, y);
+            return new Color(rgb);
+        } else {
+            // Devuelve un valor predeterminado (por ejemplo, Color.BLACK) o maneja el error de tu elección
+            return Color.BLACK;
+        }
+    }
+
     public static void main(String[] args) {
         
         new pixel();
     }
+
 
 }
