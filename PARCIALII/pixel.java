@@ -1,4 +1,5 @@
-package PARCIALI;
+package PARCIALII;
+
 import static java.awt.Color.blue;
 import java.awt.Color;
 import java.awt.Graphics;

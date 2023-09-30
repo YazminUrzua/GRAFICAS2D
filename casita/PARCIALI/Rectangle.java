@@ -6,7 +6,7 @@ public class Rectangle {
     private pixel pixel;
 
     public Rectangle() {
-        pixel = new pixel();
+        pixel = new PARCIALI.pixel();
     }
 
     public void drawRectangle(int centerX, int centerY, int width, int height) {
