@@ -1,8 +1,6 @@
 package PARCIALII;
 import java.awt.Color;
 
-
-
 public class TranslationCircleAnimationWithThreads {
     private PARCIALI.pixel pixel; // Instancia de la clase Pixel
     private int xc, yc, radio; // Coordenadas y radio del círculo
