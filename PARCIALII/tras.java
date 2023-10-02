@@ -1,14 +1,16 @@
-
 package PARCIALII;
-import java.awt.Color;
-import java.awt.Graphics;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class tras extends javax.swing.JFrame {
     private BufferedImage buffer;
     private Graphics graPixel;
     private int xc, yc, radio; // Coordenadas y radio del círculo
     private int deltaX, deltaY; // Cantidades de desplazamiento en x e y
+    private Color backgroundColor = Color.BLACK; // Color de fondo
 
     public tras() {
         init();
@@ -21,7 +23,7 @@ public class tras extends javax.swing.JFrame {
     }
 
     public void init() {
-        setTitle("Pixel");
+        setTitle("TRASLATION");
         setSize(500, 500);
         setResizable(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -36,45 +38,38 @@ public class tras extends javax.swing.JFrame {
     }
 
     public Color getPixelColor(int x, int y) {
-        // Obtén el color del píxel en la ubicación (x, y) del buffer de la imagen
         if (x >= 0 && x < buffer.getWidth() && y >= 0 && y < buffer.getHeight()) {
             int rgb = buffer.getRGB(x, y);
             return new Color(rgb);
         } else {
-            // Devuelve un valor predeterminado (por ejemplo, Color.BLACK) o maneja el error de tu elección
             return Color.BLACK;
         }
     }
 
-    public void drawCircle() {
-        // Bucle para borrar los puntos del círculo anterior (dibujados en blanco)
-        for (int x = -radio; x <= radio; x++) {
-            int y = (int) Math.round(Math.sqrt(radio * radio - x * x));
-            putPixel(xc + x, yc + y, Color.BLACK);
-            putPixel(xc - x, yc + y, Color.BLACK);
-            putPixel(xc + x, yc - y, Color.BLACK);
-            putPixel(xc - x, yc - y, Color.BLACK);
-            putPixel(xc + y, yc + x, Color.BLACK);
-            putPixel(xc - y, yc + x, Color.BLACK);
-            putPixel(xc + y, yc - x, Color.BLACK);
-            putPixel(xc - y, yc - x, Color.BLACK);
+    public void fillCircle(int xc, int yc, int radio, Color fillColor) {
+        for (int y = yc - radio; y <= yc + radio; y++) {
+            for (int x = xc - radio; x <= xc + radio; x++) {
+                double distance = Math.sqrt((x - xc) * (x - xc) + (y - yc) * (y - yc));
+                if (distance <= radio) {
+                    putPixel(x, y, fillColor);
+                }
+            }
         }
+    }
+
+    public void eraseCircle(int xc, int yc, int radio, Color fillColor) {
+        fillCircle(xc, yc, radio, fillColor);
+    }
+
+    public void drawCircle() {
+        eraseCircle(xc, yc, radio, backgroundColor); // Borra el círculo anterior
+
         // Calcula las nuevas coordenadas del centro
         xc += deltaX;
         yc += deltaY;
 
-        // Bucle para dibujar el círculo trasladado en las nuevas coordenadas (naranja)
-        for (int x = -radio; x <= radio; x++) {
-            int y = (int) Math.round(Math.sqrt(radio * radio - x * x));
-            putPixel(xc + x, yc + y, Color.ORANGE);
-            putPixel(xc - x, yc + y, Color.ORANGE);
-            putPixel(xc + x, yc - y, Color.ORANGE);
-            putPixel(xc - x, yc - y, Color.ORANGE);
-            putPixel(xc + y, yc + x, Color.ORANGE);
-            putPixel(xc - y, yc + x, Color.ORANGE);
-            putPixel(xc + y, yc - x, Color.ORANGE);
-            putPixel(xc - y, yc - x, Color.ORANGE);
-        }
+        // Rellena el círculo trasladado en las nuevas coordenadas con el color especificado (naranja)
+        fillCircle(xc, yc, radio, Color.ORANGE);
     }
 
     public void startAnimation() {
@@ -104,7 +99,7 @@ public class tras extends javax.swing.JFrame {
     }
 
     public static void main(String[] args) {
-        // Crea una instancia de TranslationCircleAnimationWithThreads
+        // Crea una instancia de tras
         tras animation = new tras();
         // Inicia la animación
         animation.startAnimation();
