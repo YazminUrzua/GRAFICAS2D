@@ -1,9 +1,7 @@
-package PARCIALII;
+package PARCIALII.fills;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.LinkedList;
-import java.util.Queue;
 
 public class floodFillRe extends javax.swing.JFrame {
     private BufferedImage buffer;
@@ -22,20 +20,6 @@ public class floodFillRe extends javax.swing.JFrame {
         setVisible(true);
 
         buffer = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-
-        // Dibuja un rectángulo con el método proporcionado
-        drawRectangle(200, 150, 100, 100);
-
-        // Punto de inicio para el algoritmo de inundación (dentro del rectángulo)
-        int startX = 250;
-        int startY = 200;
-
-        // Color nuevo para rellenar
-        Color newColor = Color.RED;
-
-        // Llama al algoritmo de inundación para rellenar el rectángulo
-        floodFill(startX, startY, newColor);
-
         repaint();
     }
 
@@ -58,51 +42,38 @@ public class floodFillRe extends javax.swing.JFrame {
         }
     }
 
-    public void floodFill(int startX, int startY, Color newColor) {
-        int originalColor = getPixelColor(startX, startY).getRGB();
-
-        if (originalColor == newColor.getRGB()) {
-            return;
-        }
-
-        Queue<Point> queue = new LinkedList<>();
-        queue.add(new Point(startX, startY));
-
-        while (!queue.isEmpty()) {
-            Point point = queue.poll();
-            int x = (int) point.getX();
-            int y = (int) point.getY();
-
-            if (getPixelColor(x, y).getRGB() == originalColor) {
-                putPixel(x, y, newColor);
-
-                queue.add(new Point(x + 1, y));
-                queue.add(new Point(x - 1, y));
-                queue.add(new Point(x, y + 1));
-                queue.add(new Point(x, y - 1));
-            }
-        }
-    }
-
     public void drawRectangle(int centerX, int centerY, int width, int height) {
         int ancho = width / 2;
         int alt = height / 2;
 
         for (int x = centerX - ancho; x <= centerX + ancho; x++) {
-            putPixel(x, centerY - alt, Color.BLUE);
-            putPixel(x, centerY + alt, Color.BLUE);
+            putPixel(x, centerY - alt, Color.BLACK);
+            putPixel(x, centerY + alt, Color.BLACK);
         }
         for (int y = centerY - alt; y <= centerY + alt; y++) {
-            putPixel(centerX - ancho, y, Color.BLUE);
-            putPixel(centerX + ancho, y, Color.BLUE);
+            putPixel(centerX - ancho, y, Color.BLACK);
+            putPixel(centerX + ancho, y, Color.BLACK);
         }
 
         putPixel(centerX, centerY, Color.BLACK);
+        floodFilling(centerX, centerY, width, height, Color.cyan);
+    }
+
+//Relleno para el rectangulo
+    public void floodFilling(int x, int y, int width, int height, Color c){
+        for(int i = x; i< x+ width; i++){
+            for(int u = y; u< y+height; u++){
+                putPixel(i, u, c);
+            }
+        }
     }
 
     public static void main(String[] args) {
+ 
         SwingUtilities.invokeLater(() -> {
-            new floodFillRe();
+       
+            floodFillRe draw =  new floodFillRe();
+            draw.drawRectangle(200, 150, 100, 100);
         });
     }
 }
