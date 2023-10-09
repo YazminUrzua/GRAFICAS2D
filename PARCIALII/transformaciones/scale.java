@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
-public class scale extends JPanel implements ActionListener {
+public class Scale extends JPanel implements ActionListener {
     private BufferedImage buffer;
     private Graphics2D graPixel;
     private static final int WIDTH = 500;
@@ -16,10 +16,10 @@ public class scale extends JPanel implements ActionListener {
     private double[][] circleVertices; // Matriz de vértices del círculo
     private double[][] transformationMatrix; // Matriz de transformación para escalar
     private Color backgroundColor = Color.BLACK;
-    private Color circleColor = Color.green;
+    private Color circleColor = Color.GREEN;
     private Timer timer;
 
-    public scale() {
+    public Scale() {
         buffer = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
         graPixel = buffer.createGraphics();
 
@@ -55,7 +55,6 @@ public class scale extends JPanel implements ActionListener {
         double[][] scaledCircleVertices = new double[circleVertices.length][3];
         for (int i = 0; i < circleVertices.length; i++) {
             scaledCircleVertices[i] = multiplyMatrixAndPoint(transformationMatrix, circleVertices[i]);
-            
         }
 
         // Dibuja el círculo escalado y lo rellena
@@ -78,11 +77,10 @@ public class scale extends JPanel implements ActionListener {
     }
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Scaling Animation");
+        JFrame frame = new JFrame("Filled Circle Scaling Animation");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(WIDTH, HEIGHT);
-
-        scale animation = new scale();
+        Scale animation = new Scale();
         frame.add(animation);
 
         frame.setVisible(true);
@@ -104,11 +102,15 @@ public class scale extends JPanel implements ActionListener {
         int xc = centerX;
         int yc = centerY;
 
-        for (int i = 0; i < vertices.length; i++) {
-            int x = (int) (vertices[i][0] + xc);
-            int y = (int) (vertices[i][1] + yc);
-
-            putPixel(x, y, fillColor);
+        for (int y = -radius; y <= radius; y++) {
+            for (int x = -radius; x <= radius; x++) {
+                double distance = Math.sqrt(x * x + y * y);
+                if (distance <= radius) {
+                    int px = xc + x;
+                    int py = yc + y;
+                    putPixel(px, py, fillColor);
+                }
+            }
         }
     }
 
