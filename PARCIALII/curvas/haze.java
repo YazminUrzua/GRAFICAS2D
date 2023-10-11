@@ -2,10 +2,10 @@ package PARCIALII.curvas;
 
 import java.awt.Color;
 
-public class curvePoints {
+public class haze {
     private final PARCIALI.pixel pixel; // Instancia de la clase Pixel
 
-    public curvePoints() {
+    public haze() {
         pixel = new PARCIALI.pixel(); // Crear una instancia de la clase Pixel
     }
 
@@ -33,16 +33,17 @@ public class curvePoints {
         }
     }
 
-    // y = sen(x) en [0,π] con 8 puntos
-    public void curve() {
-        int numPoints = 8; // Aumenta el número de puntos para una curva más suave
+   
+    public void humus() {
+        int numPoints = 100; // Aumenta el número de puntos para una curva más suave
         double π = Math.PI;
         int prevX = 0;
         int prevY = 0;
 
         for (int i = 0; i < numPoints; i++) {
-            double x = (i / (double) (numPoints - 1)) * π;
-            double y = Math.sin(x);
+            double y = (i / (double) (numPoints - 1)) * 2*π;
+            double s = 4*y;
+            double x = y*Math.cos(s);
 
             // Mapear los valores de x e y a las coordenadas de la ventana
             int xCoord = (int) (x * 100); // Ajusta este valor según el tamaño de tu ventana
@@ -58,7 +59,7 @@ public class curvePoints {
     }
 
     public static void main(String[] args) {
-        curvePoints curveDrawer = new curvePoints();
-        curveDrawer.curve();
+        haze curveDrawer = new haze();
+        curveDrawer.humus();
     }
 }
