@@ -46,8 +46,8 @@ public class flower {
             double y = Math.sin(t) + (1.0 / 2.0 * Math.sin(7 * t)) + (1.0 / 3.0 * Math.cos(17 * t));
 
             // Aplicar traslación para centrar en el centro del frame
-            double xTranslated = x * 50 + 250; // Centrar en el centro del frame
-            double yTranslated = y * 50 + 250; // Centrar en el centro del frame
+            double xTranslated = x * 50 + 250; 
+            double yTranslated = y * 50 + 250; 
 
             // Mapear los valores de x e y a las coordenadas de la ventana
             int xCoord = (int) xTranslated;
