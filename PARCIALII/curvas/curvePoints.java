@@ -46,8 +46,8 @@ public class curvePoints {
 
            
             // Aplicar traslación para centrar en el centro del frame
-            double xTranslated = x * 50 + 300; // Centrar en el centro del frame
-            double yTranslated = y * 50 + 200; // Centrar en el centro del frame
+            double xTranslated = x * 50 + 300; 
+            double yTranslated = y * 50 + 200; 
 
             // Mapear los valores de x e y a las coordenadas de la ventana
             int xCoord = (int) xTranslated; 
