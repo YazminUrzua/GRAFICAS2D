@@ -1,11 +1,12 @@
 package PARCIALII.curvas;
 
+
 import java.awt.Color;
 
-public class curvePoints {
+public class flower {
     private final PARCIALI.pixel pixel; // Instancia de la clase Pixel
 
-    public curvePoints() {
+    public flower() {
         pixel = new PARCIALI.pixel(); // Crear una instancia de la clase Pixel
     }
 
@@ -18,7 +19,7 @@ public class curvePoints {
         int yStep = y1 < y2 ? 1 : -1;
 
         while (x1 != x2 || y1 != y2) {
-            pixel.putPixel(x1, y1, Color.MAGENTA);
+            pixel.putPixel(x1, y1, Color.RED);
             int err2 = 2 * err;
 
             if (err2 > -dy) {
@@ -33,25 +34,24 @@ public class curvePoints {
         }
     }
 
-    // y = sen(x) en [0,π] con 8 puntos
-    public void curve() {
-        int numPoints = 800; // Aumenta el número de puntos para una curva más suave
+    public void DrawFlower() {
+        int numPoints = 1000; // Aumenta el número de puntos para una curva más suave
         double π = Math.PI;
         int prevX = 0;
         int prevY = 0;
 
         for (int i = 0; i < numPoints; i++) {
-            double x = (i / (double) (numPoints - 1)) * -π;
-            double y = Math.sin(x);
+            double t = (i / (double) (numPoints - 1)) * 2 * π;
+            double x = (1.0 / 2.0 * Math.cos(t)) + (1.0 / 2.0 * Math.cos(7 * t)) + (1.0 / 3.0 * Math.sin(17 * t));
+            double y = Math.sin(t) + (1.0 / 2.0 * Math.sin(7 * t)) + (1.0 / 3.0 * Math.cos(17 * t));
 
-           
             // Aplicar traslación para centrar en el centro del frame
-            double xTranslated = x * 50 + 300; // Centrar en el centro del frame
-            double yTranslated = y * 50 + 200; // Centrar en el centro del frame
+            double xTranslated = x * 50 + 250; // Centrar en el centro del frame
+            double yTranslated = y * 50 + 250; // Centrar en el centro del frame
 
             // Mapear los valores de x e y a las coordenadas de la ventana
-            int xCoord = (int) xTranslated; 
-            int yCoord = (int) yTranslated; 
+            int xCoord = (int) xTranslated;
+            int yCoord = (int) yTranslated;
 
             if (i > 0) {
                 drawBresenhamLine(prevX, prevY, xCoord, yCoord);
@@ -63,7 +63,7 @@ public class curvePoints {
     }
 
     public static void main(String[] args) {
-        curvePoints curveDrawer = new curvePoints();
-        curveDrawer.curve();
+        flower flowers = new flower();
+        flowers.DrawFlower();
     }
 }

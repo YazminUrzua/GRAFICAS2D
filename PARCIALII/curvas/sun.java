@@ -2,10 +2,10 @@ package PARCIALII.curvas;
 
 import java.awt.Color;
 
-public class curvePoints {
+public class sun {
     private final PARCIALI.pixel pixel; // Instancia de la clase Pixel
 
-    public curvePoints() {
+    public sun() {
         pixel = new PARCIALI.pixel(); // Crear una instancia de la clase Pixel
     }
 
@@ -18,7 +18,7 @@ public class curvePoints {
         int yStep = y1 < y2 ? 1 : -1;
 
         while (x1 != x2 || y1 != y2) {
-            pixel.putPixel(x1, y1, Color.MAGENTA);
+            pixel.putPixel(x1, y1, Color.ORANGE);
             int err2 = 2 * err;
 
             if (err2 > -dy) {
@@ -33,25 +33,24 @@ public class curvePoints {
         }
     }
 
-    // y = sen(x) en [0,π] con 8 puntos
-    public void curve() {
-        int numPoints = 800; // Aumenta el número de puntos para una curva más suave
+    public void drawSun() {
+        int numPoints = 1000; // Aumenta el número de puntos para una curva más suave
         double π = Math.PI;
         int prevX = 0;
         int prevY = 0;
 
         for (int i = 0; i < numPoints; i++) {
-            double x = (i / (double) (numPoints - 1)) * -π;
-            double y = Math.sin(x);
+            double t = (i / (double) (numPoints - 1)) * 14 * π; // Rango de t [0, 14π]
+            double x = 17 * Math.cos(t) + 7 * Math.cos((17.0 / 7.0) * t);
+            double y = 17 * Math.sin(t) - 7 * Math.sin((17.0 / 7.0) * t);
 
-           
             // Aplicar traslación para centrar en el centro del frame
-            double xTranslated = x * 50 + 300; // Centrar en el centro del frame
-            double yTranslated = y * 50 + 200; // Centrar en el centro del frame
+            double xTranslated = x * 5 + 250; // Centrar en el centro del frame
+            double yTranslated = y * 5 + 250; // Centrar en el centro del frame
 
             // Mapear los valores de x e y a las coordenadas de la ventana
-            int xCoord = (int) xTranslated; 
-            int yCoord = (int) yTranslated; 
+            int xCoord = (int) xTranslated;
+            int yCoord = (int) yTranslated;
 
             if (i > 0) {
                 drawBresenhamLine(prevX, prevY, xCoord, yCoord);
@@ -63,7 +62,7 @@ public class curvePoints {
     }
 
     public static void main(String[] args) {
-        curvePoints curveDrawer = new curvePoints();
-        curveDrawer.curve();
+        sun sunDrawer = new sun();
+        sunDrawer.drawSun();
     }
 }

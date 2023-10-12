@@ -33,7 +33,6 @@ public class haze {
         }
     }
 
-   
     public void humus() {
         int numPoints = 100; // Aumenta el número de puntos para una curva más suave
         double π = Math.PI;
@@ -41,13 +40,17 @@ public class haze {
         int prevY = 0;
 
         for (int i = 0; i < numPoints; i++) {
-            double y = (i / (double) (numPoints - 1)) * 2*π;
-            double s = 4*y;
-            double x = y*Math.cos(s);
+            double y = (i / (double) (numPoints - 1)) * -2 * π;
+            double s = -4 * y;
+            double x = y * Math.cos(s);
+
+            // Aplicar traslación para centrar en el centro del frame
+            double xTranslated = x * 50 + 250; // Centrar en el centro del frame
+            double yTranslated = y * 50 + 400; // Centrar en el centro del frame
 
             // Mapear los valores de x e y a las coordenadas de la ventana
-            int xCoord = (int) (x * 100); // Ajusta este valor según el tamaño de tu ventana
-            int yCoord = (int) (y * 100); // Ajusta este valor según el tamaño de tu ventana
+            int xCoord = (int) xTranslated; 
+            int yCoord = (int) yTranslated; 
 
             if (i > 0) {
                 drawBresenhamLine(prevX, prevY, xCoord, yCoord);
