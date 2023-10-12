@@ -45,9 +45,8 @@ public class InfiniteSymbol {
             double y = r * Math.cos(t) * Math.sin(t) / (1 + Math.pow(Math.sin(t), 2));
 
             // Aplicar traslación para centrar en el centro del frame
-            double xTranslated = x * 50 + 250; // Centrar en el centro del frame
-            double yTranslated = y * 50 + 250; // Centrar en el centro del frame
-
+            double xTranslated = x * 50 + 250; 
+            double yTranslated = y * 50 + 250; 
             // Mapear los valores de x e y a las coordenadas de la ventana
             int xCoord = (int) xTranslated;
             int yCoord = (int) yTranslated;
