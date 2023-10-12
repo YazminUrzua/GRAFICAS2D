@@ -45,8 +45,8 @@ public class haze {
             double x = y * Math.cos(s);
 
             // Aplicar traslación para centrar en el centro del frame
-            double xTranslated = x * 50 + 250; // Centrar en el centro del frame
-            double yTranslated = y * 50 + 400; // Centrar en el centro del frame
+            double xTranslated = x * 50 + 250; 
+            double yTranslated = y * 50 + 400; 
 
             // Mapear los valores de x e y a las coordenadas de la ventana
             int xCoord = (int) xTranslated; 
