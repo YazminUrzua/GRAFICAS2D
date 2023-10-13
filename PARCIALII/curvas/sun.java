@@ -34,13 +34,13 @@ public class sun {
     }
 
     public void drawSun() {
-        int numPoints = 1000; // Aumenta el número de puntos para una curva más suave
+        int Points = 1000; // Aumenta el número de puntos para una curva más suave
         double π = Math.PI;
         int prevX = 0;
         int prevY = 0;
 
-        for (int i = 0; i < numPoints; i++) {
-            double t = (i / (double) (numPoints - 1)) * 14 * π; // Rango de t [0, 14π]
+        for (int i = 0; i < Points; i++) {
+            double t = (i / (double) (Points - 1)) * 14 * π; // Rango de t [0, 14π]
             double x = 17 * Math.cos(t) + 7 * Math.cos((17.0 / 7.0) * t);
             double y = 17 * Math.sin(t) - 7 * Math.sin((17.0 / 7.0) * t);
 
