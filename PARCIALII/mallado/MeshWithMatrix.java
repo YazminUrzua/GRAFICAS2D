@@ -17,10 +17,15 @@ public class MeshWithMatrix {
             int x = pointsMatrix[i][0];
             int y = pointsMatrix[i][1];
             
+            try {
+                Thread.sleep(5);
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
             // Dibuja un píxel para representar cada vértice del triángulo
             pixel.putPixel(x, y, Color.GRAY);
+        
         }
-    
         // Dibuja el círculo
         for (int x = -radio; x <= radio; x++) {
             int y = (int) Math.round(Math.sqrt(radio * radio - x * x));
@@ -61,7 +66,7 @@ public class MeshWithMatrix {
         int centerX = 250;
         int centerY = 250;
         int radius = 200;
-        int meshSpacing = 5;
+        int meshSpacing = 20;
 
         drawer.drawCircleWithMesh(centerX, centerY, radius, meshSpacing);
     }

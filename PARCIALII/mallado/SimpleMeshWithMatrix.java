@@ -47,7 +47,6 @@ public class SimpleMeshWithMatrix {
     }
     
     
-
     // Crea una matriz de puntos del mallado
     private int[][] createPointsMatrix(int xc, int yc, int radio, int meshSpacing) {
         int numPoints = (2 * radio / meshSpacing + 1) * (2 * radio / meshSpacing + 1);
