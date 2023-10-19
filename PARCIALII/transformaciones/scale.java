@@ -18,6 +18,9 @@ public class Scale extends JPanel implements ActionListener {
     private Color backgroundColor = Color.BLACK;
     private Color circleColor = Color.GREEN;
     private Timer timer;
+    private int numCircles = 5; // Cantidad de círculos en la hilera
+    private int circleSpacing = 30; // Espacio entre círculos
+
 
     public Scale() {
         buffer = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
