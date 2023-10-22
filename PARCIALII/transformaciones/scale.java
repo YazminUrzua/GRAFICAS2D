@@ -18,8 +18,7 @@ public class Scale extends JPanel implements ActionListener {
     private Color backgroundColor = Color.BLACK;
     private Color circleColor = Color.GREEN;
     private Timer timer;
-    private int numCircles = 5; // Cantidad de círculos en la hilera
-    private int circleSpacing = 30; // Espacio entre círculos
+   
 
 
     public Scale() {
@@ -70,6 +69,7 @@ public class Scale extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         // Incrementa los factores de escala en cada iteración para aumentar el tamaño del círculo
         transformationMatrix[0][0] += 0.1;
+        transformationMatrix[0][1] += 0.1;
         transformationMatrix[1][1] += 0.1;
 
         // Actualiza el radio del círculo

@@ -76,7 +76,11 @@ public class rotation extends JPanel implements ActionListener {
 
         // Dibujar el rectángulo transformado
         graPixel.setColor(Color.ORANGE);
-        graPixel.fillPolygon(xPoints, yPoints, xPoints.length);
+       //graPixel.fillPolygon(xPoints, yPoints, xPoints.length);
+      
+       // graPixel.drawPolygon(xPoints, yPoints, xPoints.length);
+
+      
 
         angle += Math.toRadians(5); // Incrementar el ángulo de rotación
 

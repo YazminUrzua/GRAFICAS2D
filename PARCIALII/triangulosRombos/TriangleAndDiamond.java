@@ -1,5 +1,9 @@
 package PARCIALII.triangulosRombos;
+
 import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
+import javax.sound.sampled.*;
 
 public class TriangleAndDiamond {
     private PARCIALI.pixel pixel;
@@ -13,7 +17,7 @@ public class TriangleAndDiamond {
         for (int x = centerX - size; x <= centerX + size; x++) {
             for (int y = centerY - size; y <= centerY + size; y++) {
                 if (Math.abs(x - centerX) + Math.abs(y - centerY) <= size) {
-                    pixel.putPixel(x, y, Color.magenta);
+                    pixel.putPixel(x, y, Color.MAGENTA);
                 }
             }
         }
@@ -28,7 +32,7 @@ public class TriangleAndDiamond {
         int minY = Math.min(y1, Math.min(y2, y3));
         int maxX = Math.max(x1, Math.max(x2, x3));
         int maxY = Math.max(y1, Math.max(y2, y3));
-    
+
         // Rellena el triángulo
         for (int x = minX; x <= maxX; x++) {
             for (int y = minY; y <= maxY; y++) {
@@ -37,13 +41,13 @@ public class TriangleAndDiamond {
                 }
             }
         }
-    
+
         // Pinta los vértices del triángulo
         pixel.putPixel(x1, y1, Color.BLACK);
         pixel.putPixel(x2, y2, Color.BLACK);
         pixel.putPixel(x3, y3, Color.BLACK);
     }
-    
+
     // Método para comprobar si un punto (x, y) está dentro de un triángulo
     private boolean isInsideTriangle(int x1, int y1, int x2, int y2, int x3, int y3, int x, int y) {
         int area = Math.abs((x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2);
@@ -55,6 +59,9 @@ public class TriangleAndDiamond {
     }
 
     public static void main(String[] args) {
+        // Agregar código para reproducir audio
+        playSound("/Users/yazminurzuac/Desktop/6P/GRAFICAS2D/PARCIALII/triangulosRombos/INICIO-DEL-JUEGO-PACMAN_SONIDO_.wav");
+
         TriangleAndDiamond drawer = new TriangleAndDiamond();
 
         int centerX = 150;
@@ -70,5 +77,17 @@ public class TriangleAndDiamond {
 
         drawer.drawDiamond(centerX, centerY, size);
         drawer.drawTriangle(x1, y1, x2, y2, x3, y3);
+    }
+
+    // Método para reproducir un archivo de sonido
+    public static void playSound(String soundFile) {
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundFile));
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            e.printStackTrace();
+        }
     }
 }
