@@ -64,6 +64,8 @@ public class pacman extends JPanel implements ActionListener {
     private double translateYPh2 = 0;
      private double translateXPh3 = 0;
     private double translateYPh3= 0;
+    private int sizePh = 15;
+    private boolean left = false;
      
 
     public pacman() {
@@ -93,22 +95,25 @@ public class pacman extends JPanel implements ActionListener {
      translateYPh3 = 120;
 
         triangleVertices = new double[][]{
-            {0, -20, 1}, // P1
-            {20, 20, 1}, // P2
-            {-20, 20, 1} // P3
+            {-sizePh, -sizePh, 1},
+            {sizePh, -sizePh, 1},
+            {sizePh, sizePh, 1},
+            {-sizePh, sizePh, 1}
         };
 
 
         ghostVertices2 = new double[][]{
-            {0, -20, 1},
-            {20, 20, 1},
-            {-20, 20, 1}
+            {-sizePh, -sizePh, 1},
+            {sizePh, -sizePh, 1},
+            {sizePh, sizePh, 1},
+            {-sizePh, sizePh, 1}
         };
 
          ghostVertices3 = new double[][]{
-            {0, -20, 1},
-            {20, 20, 1},
-            {-20, 20, 1}
+             {-sizePh, -sizePh, 1},
+            {sizePh, -sizePh, 1},
+            {sizePh, sizePh, 1},
+            {-sizePh, sizePh, 1}
         };
 
 
@@ -134,7 +139,7 @@ public class pacman extends JPanel implements ActionListener {
 
 
         // Configura el temporizador del primer JLabel
-        labelTimer = new Timer(2500, new ActionListener() {
+        labelTimer = new Timer(3500, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 label.setVisible(false);
@@ -217,11 +222,15 @@ public class pacman extends JPanel implements ActionListener {
         drawPhantom();
         drawPhantom2();
         drawPhantom3();
-    
-
+        drawInfinitySymbols(); // Coloca las figuras de infinito en (50, 250)
+      
         g.drawImage(buffer, 0, 0, this);
+   
        
     }
+
+
+    
 //relleno
     private void fillCircles(int[] xCenters, int[] sizes, Color fillColor) {
          
@@ -257,6 +266,157 @@ public class pacman extends JPanel implements ActionListener {
             }
         }
     }
+
+
+    public void drawInfinitySymbols() {
+
+        int numFigures = 1;
+        int numPoints = 100;
+
+        
+            for (int j = 0; j < numFigures; j++) {
+                double offset = j * 2.0 * Math.PI / numFigures;
+                
+                int prevX = 0;
+                int prevY = 0;
+                int prevX2 = 0;
+                int prevY2 = 0;
+                int prevX3 = 0;
+                int prevY3 = 0;
+                int prevX4 = 0;
+                int prevY4 = 0;
+                int prevX5 = 0;
+                int prevY5 = 0;
+                int prevX6 = 0;
+                int prevY6 = 0;
+                int prevX7 = 0;
+                int prevY7 = 0;
+                int prevX8 = 0;
+                int prevY8 = 0;
+                int prevX9 = 0;
+                int prevY9 = 0;
+        
+                for (int i = 0; i < numPoints; i++) {
+                    double t = (i / (double) (numPoints - 1)) * 2 * Math.PI;
+                    double r = 2;
+                    double x = r * Math.cos(t) / (1 + Math.pow(Math.sin(t), 2));
+                    double y = r * Math.cos(t) * Math.sin(t) / (1 + Math.pow(Math.sin(t), 2));
+
+                      // Rotar 90 grados intercambiando las coordenadas x e y
+            double xRotated = y;
+            double yRotated = x;
+        
+                    // Aplicar traslación para centrar en el centro del frame
+                    //CYAN
+                    double xTranslated = x * 20 + 530;
+                    double yTranslated = y * 20 + 450;
+                    //VER
+                    double xTranslated2 = x * 20 + 680;
+                    double yTranslated2 = y * 20 + 90;
+                    //AZU
+                    double xTranslated3 = x * 20 + 275;
+                    double yTranslated3 = y * 20 + 90;
+                    //RO
+                    double xTranslated4 = x * 20 + 620;
+                    double yTranslated4 = y * 20 + 675;
+                    //NA
+                    double xTranslated5 = x * 20 + 620;
+                    double yTranslated5 = y * 20 + 145;
+                    //MAG
+                    double xTranslated6 = x * 20 + 55;
+                    double yTranslated6 = y * 20 + 535;
+                    //ROSA
+                    double xTranslated7 = x * 20 + 535;
+                    double yTranslated7 = y * 20 + 90;
+                    //AM
+                    double xTranslated8 = x * 20 + 120;
+                    double yTranslated8 = y * 20 + 90;
+
+                    //NA2
+                    double xTranslated9 = x * 20 + 50;
+                    double yTranslated9 = y * 20 + 145;
+        
+                    if (j % 2 == 0) {
+                        // Cambiar las coordenadas x e y para las figuras horizontales
+                        xTranslated += offset * 20;
+                        xTranslated2 += offset * 20;
+                        xTranslated3 += offset * 20;
+                        xTranslated4 += offset * 20;
+                        xTranslated5 -= offset * 80;
+                        xTranslated6 += offset * 20;
+                        xTranslated7 += offset * 20;
+                        xTranslated8 += offset * 20;
+                        xTranslated9 += offset * 20;
+                    } else {
+                        // Cambiar las coordenadas x e y para las figuras verticales
+                        yTranslated += offset * 20;
+                        yTranslated2 += offset * 20;
+                        yTranslated3 += offset * 20;
+                        yTranslated4 += offset * 20;
+                        yTranslated5 -= offset * 80;
+                        yTranslated6 += offset * 20;
+                        yTranslated7 += offset * 20;
+                        yTranslated8 += offset * 20;
+                        yTranslated9 += offset * 20;
+                    }
+        
+                    // Mapear los valores de x e y a las coordenadas de la ventana
+                    int xCoord = (int) xTranslated;
+                    int yCoord = (int) yTranslated;
+                    int xCoord2 = (int) xTranslated2;
+                    int yCoord2 = (int) yTranslated2;
+                    int xCoord3 = (int) xTranslated3;
+                    int yCoord3 = (int) yTranslated3;
+                    int xCoord4 = (int) xTranslated4;
+                    int yCoord4 = (int) yTranslated4;
+                    int xCoord5 = (int) xTranslated5;
+                    int yCoord5 = (int) yTranslated5;
+                    int xCoord6 = (int) xTranslated6;
+                    int yCoord6 = (int) yTranslated6;
+                    int xCoord7 = (int) xTranslated7;
+                    int yCoord7 = (int) yTranslated7;
+                    int xCoord8 = (int) xTranslated8;
+                    int yCoord8 = (int) yTranslated8;
+                    int xCoord9 = (int) xTranslated9;
+                    int yCoord9 = (int) yTranslated9;
+        
+                    if (i > 0) {
+                        // Dibuja el siguiente punto del infinito
+                        drawBresenhamLine(prevX, prevY, xCoord, yCoord, Color.CYAN);
+                        drawBresenhamLine(prevX2, prevY2, xCoord2, yCoord2, Color.green);
+                        drawBresenhamLine(prevX3, prevY3, xCoord3, yCoord3, new Color(0x99B080));
+                        drawBresenhamLine(prevX4, prevY4, xCoord4, yCoord4, Color.RED);
+                        drawBresenhamLine(prevX5, prevY5, xCoord5, yCoord5, new Color(0xF50057));//NARANJA
+                        drawBresenhamLine(prevX6, prevY6, xCoord6, yCoord6, new Color(0x76ff03));
+                        drawBresenhamLine(prevX7, prevY7, xCoord7, yCoord7, Color.PINK);
+                        drawBresenhamLine(prevX8, prevY8, xCoord8, yCoord8, Color.YELLOW);
+                        drawBresenhamLine(prevX9, prevY9, xCoord9, yCoord9, new Color(0x2979ff));
+                    }
+        
+                    prevX = xCoord;
+                    prevY = yCoord;
+                    prevX2 = xCoord2;
+                    prevY2 = yCoord2;
+                    prevX3 = xCoord3;
+                    prevY3 = yCoord3;
+                    prevX4 = xCoord4;
+                    prevY4 = yCoord4;
+                    prevX5 = xCoord5;
+                    prevY5 = yCoord5;
+                    prevX6 = xCoord6;
+                    prevY6 = yCoord6;
+                    prevX7 = xCoord7;
+                    prevY7 = yCoord7;
+                    prevX8 = xCoord8;
+                    prevY8 = yCoord8;
+                    prevX9 = xCoord9;
+                    prevY9 = yCoord9;
+                }
+            }
+        }
+        
+    
+    
 
     private void fillPolygonTri(int[] xPoints, int[] yPoints, Color fillColor) {
         int minY = Integer.MAX_VALUE;
@@ -295,41 +455,49 @@ public class pacman extends JPanel implements ActionListener {
 
 
     public void drawPhantom() {
-       
         int[] xPointsTri = new int[triangleVertices.length];
         int[] yPointsTri = new int[triangleVertices.length];
-
+    
         double[][] translationMatrix = {
             {1, 0, translateXTri},
             {0, 1, translateYTri},
             {0, 0, 1}
         };
-
+    
         for (int i = 0; i < triangleVertices.length; i++) {
             double[] transformedVertex = multiplyMatrixAndPoint(translationMatrix, triangleVertices[i]);
             xPointsTri[i] = (int) (transformedVertex[0] + (WIDTH / 2));
             yPointsTri[i] = (int) (transformedVertex[1] + (HEIGHT / 2));
         }
-
+    
         fillPolygonTri(xPointsTri, yPointsTri, fillColorTri);
-
-        // Dibuja los ojos en el centro del triángulo
-        int centerX = (xPointsTri[0] + xPointsTri[1] + xPointsTri[2]) / 3;
-        int eyeY = (yPointsTri[0] + yPointsTri[1] + yPointsTri[2]) / 3;
-
-        int eyeX1 = centerX - 10;
-        int eyeX2 = centerX + 5;
-
-        int eyeWidth = 5;
-        int eyeHeight = 5;
-
+    
+        // Dibuja la cabeza (head)
+        int centerX = (xPointsTri[0] + xPointsTri[1] + xPointsTri[2]) / 3 -5;
+        int centerY = (yPointsTri[0] + yPointsTri[1] + yPointsTri[2]) / 3-5;
+        int headRadius = 15;
+    
+        graPixel.setColor(fillColorTri);
+        graPixel.fillOval(centerX - headRadius, centerY - headRadius, headRadius * 2, headRadius * 2);
+    
+        // Dibuja los ojos en el centro de la cabeza
+        int eyeRadius = 5;
+        int eyeX1 = centerX - eyeRadius - 5;
+        int eyeX2 = centerX + eyeRadius ;
+        int eyeY = centerY - 5;
+    
+        graPixel.setColor(Color.WHITE);
+        graPixel.fillOval(eyeX1, eyeY, eyeRadius * 2, eyeRadius * 2);
+        graPixel.fillOval(eyeX2, eyeY, eyeRadius * 2, eyeRadius * 2);
+    
         graPixel.setColor(Color.BLACK);
-        graPixel.fillOval(eyeX1, eyeY, eyeWidth, eyeHeight);
-        graPixel.fillOval(eyeX2, eyeY, eyeWidth, eyeHeight);
+        graPixel.fillOval(eyeX1, eyeY-1, eyeRadius, eyeRadius );
+        graPixel.fillOval(eyeX2, eyeY-1, eyeRadius , eyeRadius );
     }
+    
 
         public void drawPhantom2() {
-       
+
         int[] xPoints2 = new int[ghostVertices2.length];
         int[] yPoints2 = new int[ghostVertices2.length];
 
@@ -338,28 +506,38 @@ public class pacman extends JPanel implements ActionListener {
             {0, 1, translateYPh2},
             {0, 0, 1}
         };
-
-        for (int i = 0; i < ghostVertices2.length; i++) {
+          for (int i = 0; i < ghostVertices2.length; i++) {
             double[] transformedVertex2 = multiplyMatrixAndPoint(translationMatrixPh2, ghostVertices2[i]);
             xPoints2[i] = (int) (transformedVertex2[0] + (WIDTH / 2));
             yPoints2[i] = (int) (transformedVertex2[1] + (HEIGHT / 2));
         }
 
+    
         fillPolygonTri(xPoints2, yPoints2, fillColorTri2);
-
-        // Dibuja los ojos en el centro del triángulo
-        int centerX = (xPoints2[0] + xPoints2[1] + xPoints2[2]) / 3;
-        int eyeY = (yPoints2[0] + yPoints2[1] + yPoints2[2]) / 3;
-
-        int eyeX1 = centerX - 10;
-        int eyeX2 = centerX + 5;
-
-        int eyeWidth = 5;
-        int eyeHeight = 5;
-
+    
+        // Dibuja la cabeza (head)
+        int centerX = (xPoints2[0] + xPoints2[1] + xPoints2[2]) / 3 -5;
+        int centerY = (yPoints2[0] + yPoints2[1] + yPoints2[2]) / 3-5;
+        int headRadius = 15;
+    
+        graPixel.setColor(fillColorTri2);
+        graPixel.fillOval(centerX - headRadius, centerY - headRadius, headRadius * 2, headRadius * 2);
+    
+        // Dibuja los ojos en el centro de la cabeza
+        int eyeRadius = 5;
+        int eyeX1 = centerX - eyeRadius - 5;
+        int eyeX2 = centerX + eyeRadius ;
+        int eyeY = centerY - 5;
+    
+        graPixel.setColor(Color.WHITE);
+        graPixel.fillOval(eyeX1, eyeY, eyeRadius * 2, eyeRadius * 2);
+        graPixel.fillOval(eyeX2, eyeY, eyeRadius * 2, eyeRadius * 2);
+    
         graPixel.setColor(Color.BLACK);
-        graPixel.fillOval(eyeX1, eyeY, eyeWidth, eyeHeight);
-        graPixel.fillOval(eyeX2, eyeY, eyeWidth, eyeHeight);
+        graPixel.fillOval(eyeX1, eyeY-1, eyeRadius, eyeRadius );
+        graPixel.fillOval(eyeX2, eyeY-1, eyeRadius , eyeRadius );
+    
+
     }
 
     public void drawPhantom3() {
@@ -381,23 +559,31 @@ public class pacman extends JPanel implements ActionListener {
 
         fillPolygonTri(xPoints3, yPoints3, fillColorTri3);
 
-        // Dibuja los ojos en el centro del triángulo
-        int centerX = (xPoints3[0] + xPoints3[1] + xPoints3[2]) / 3;
-        int eyeY = (yPoints3[0] + yPoints3[1] + yPoints3[2]) / 3;
-
-        int eyeX1 = centerX - 10;
-        int eyeX2 = centerX + 5;
-
-        int eyeWidth = 5;
-        int eyeHeight = 5;
-
+        // Dibuja la cabeza (head)
+        int centerX = (xPoints3[0] + xPoints3[1] + xPoints3[2]) / 3 -5;
+        int centerY = (yPoints3[0] + yPoints3[1] + yPoints3[2]) / 3-5;
+        int headRadius = 15;
+    
+        graPixel.setColor(fillColorTri3);
+        graPixel.fillOval(centerX - headRadius, centerY - headRadius, headRadius * 2, headRadius * 2);
+    
+        // Dibuja los ojos en el centro de la cabeza
+        int eyeRadius = 5;
+        int eyeX1 = centerX - eyeRadius - 5;
+        int eyeX2 = centerX + eyeRadius ;
+        int eyeY = centerY - 5;
+    
+        graPixel.setColor(Color.WHITE);
+        graPixel.fillOval(eyeX1, eyeY, eyeRadius * 2, eyeRadius * 2);
+        graPixel.fillOval(eyeX2, eyeY, eyeRadius * 2, eyeRadius * 2);
+    
         graPixel.setColor(Color.BLACK);
-        graPixel.fillOval(eyeX1, eyeY, eyeWidth, eyeHeight);
-        graPixel.fillOval(eyeX2, eyeY, eyeWidth, eyeHeight);
+        graPixel.fillOval(eyeX1, eyeY-1, eyeRadius, eyeRadius );
+        graPixel.fillOval(eyeX2, eyeY-1, eyeRadius , eyeRadius );
+    
+
     }
-
-
-
+    
   private int stepTri = 0;
 
   
@@ -994,6 +1180,7 @@ private double scaleSpeed = 0.02; // Velocidad de cambio de escala
 
 //circulos left
     public void leftCircle(int xLeft, int yc) {
+        
         // Coordenadas Y de los centros de los círculos
         int[] yCenters = {yc, yc - circleSpacing, yc - 2 * circleSpacing, yc - 3 * circleSpacing};
         int[] xCenters = {xLeft, xLeft + circleSpacing, xLeft + 2 * circleSpacing, xLeft + 3 * circleSpacing}; // Coordenadas X de los centros de los círculos
@@ -1003,6 +1190,7 @@ private double scaleSpeed = 0.02; // Velocidad de cambio de escala
     }
 //circulos right
     public void rightCircle(int xRight, int yc) {
+         
         // Coordenadas Y de los centros de los círculos
         int[] yCenters = {yc, yc - circleSpacing, yc - 2 * circleSpacing, yc - 3 * circleSpacing};
         int[] xCenters = {xRight, xRight - circleSpacing, xRight - 2 * circleSpacing, xRight - 3 * circleSpacing}; // Coordenadas X de los centros de los círculos
@@ -1231,6 +1419,7 @@ private double scaleSpeed = 0.02; // Velocidad de cambio de escala
 
 
     public void drawRectangle(int centerX, int centerY, int width, int height) {
+       
         int ancho = width / 2;
         int alt = height / 2;
 
@@ -1243,10 +1432,33 @@ private double scaleSpeed = 0.02; // Velocidad de cambio de escala
             putPixel(centerX - ancho, y, Color.blue);
             putPixel(centerX + ancho, y, Color.blue);
         }
+        
 
+}
 
+public void fillRectangleWithStars(int centerX, int centerY, int width, int height) {
+int[] starX = {0, 1, 1, 2, 2, 1, 1, 0, 0, -1, -1, -2, -2, -1, -1};
+int[] starY = {-1, -1, -2, -2, -3, -3, -4, -4, -3, -3, -2, -2, -1, -1};
+
+    int ancho = width / 2;
+    int alt = height / 2;
+
+    for (int x = centerX - ancho + 1; x < centerX + ancho; x++) {
+        for (int y = centerY - alt + 1; y < centerY + alt; y++) {
+            if (Math.random() < 0.2) { // Añade una estrella con una probabilidad del 20%
+                for (int i = 0; i < starX.length; i++) {
+                    int starXCoord = x + starX[i];
+                    int starYCoord = y + starY[i];
+                    putPixel(starXCoord, starYCoord, Color.YELLOW); // Color de las estrellas
+                }
+            }
+        }
     }
+}
+
+
     public void drawPolygon(int[] xPoints, int[] yPoints, int numPoints, Color color) {
+       
         // Dibuja los lados del polígono
         for (int i = 0; i < numPoints; i++) {
             int x1 = xPoints[i];
@@ -1255,7 +1467,9 @@ private double scaleSpeed = 0.02; // Velocidad de cambio de escala
             int y2 = yPoints[(i + 1) % numPoints];
             drawBresenhamLine(x1, y1, x2, y2, color);
         }
-    }
+
+}
+    
 
 
 //linea Bresenham
@@ -1308,24 +1522,38 @@ private double scaleSpeed = 0.02; // Velocidad de cambio de escala
             }
         }
     }
-
     private void drawPacman(int x, int y, int radius, Color color) {
         int centerX = x + radius / 2;
         int centerY = y + radius / 2;
+        int mouthRadius = radius / 2;
+        
     
         for (int i = x; i < x + radius; i++) {
             for (int j = y; j < y + radius; j++) {
                 int dx = i - centerX;
                 int dy = j - centerY;
                 double distance = Math.sqrt(dx * dx + dy * dy);
-                
+    
                 if (distance <= radius / 2) {
                     // Dentro del círculo de "Pacman"
-                    putPixel(i, j, color);
+                    if (dx > 0) {
+                        // Comprueba si el punto está a la derecha del centro de "Pacman"
+                        double angle = Math.atan2(dy, dx);
+                        if (angle >= -Math.PI / 4 && angle <= Math.PI / 4 ) {
+
+                            // Dibuja la boca abierta
+                            putPixel(i, j, backgroundColor);
+                        } else {
+                            putPixel(i, j, shapeColor);
+                        }
+                    } else {
+                        putPixel(i, j, shapeColor);
+                    }
                 }
             }
         }
     }
+    
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -1355,7 +1583,7 @@ private double scaleSpeed = 0.02; // Velocidad de cambio de escala
         PhantomTras2();
         PhantomTras3();
         fondo();
-
+       
         repaint();
     }
 
@@ -1652,8 +1880,10 @@ private double scaleSpeed = 0.02; // Velocidad de cambio de escala
 
 
     public void fondo(){
+         
      
         drawRectangle(400, 380, 190, 90);
+       
         //rectangulo con recorte
         drawRectangle(400, 380, 180, 80);
         //recorteRectangle(400, 380, 180, 80,graPixel);

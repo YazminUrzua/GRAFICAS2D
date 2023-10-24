@@ -40,7 +40,7 @@ public class InfiniteSymbol {
 
         for (int i = 0; i < numPoints; i++) {
             double t = (i / (double) (numPoints - 1)) * 2 * π;
-            double r = 2;
+            double r = 0.5;
             double x = r * Math.cos(t) / (1 + Math.pow(Math.sin(t), 2));
             double y = r * Math.cos(t) * Math.sin(t) / (1 + Math.pow(Math.sin(t), 2));
 
@@ -59,9 +59,42 @@ public class InfiniteSymbol {
             prevY = yCoord;
         }
     }
+    public void drawRotatedInfinitySymbol() {
+        int numPoints = 50;
+        double π = Math.PI;
+        int prevX = 0;
+        int prevY = 0;
+    
+        for (int i = 0; i < numPoints; i++) {
+            double t = (i / (double) (numPoints - 1)) * 2 * π;
+            double r = 2;
+            double x = r * Math.cos(t) / (1 + Math.pow(Math.sin(t), 2));
+            double y = r * Math.cos(t) * Math.sin(t) / (1 + Math.pow(Math.sin(t), 2));
+    
+            // Rotar 90 grados intercambiando las coordenadas x e y
+            double xRotated = y;
+            double yRotated = x;
+    
+            // Aplicar traslación para centrar verticalmente
+            double xTranslated = xRotated * 50 + 250; // Mantiene la traslación horizontal
+            double yTranslated = yRotated * 50 + 250; // Ajusta la traslación vertical
+            int xCoord = (int) xTranslated;
+            int yCoord = (int) yTranslated;
+    
+            if (i > 0) {
+                drawBresenhamLine(prevX, prevY, xCoord, yCoord);
+            }
+    
+            prevX = xCoord;
+            prevY = yCoord;
+        }
+    }
+    
+    
 
     public static void main(String[] args) {
         InfiniteSymbol infiniteDrawer = new InfiniteSymbol();
         infiniteDrawer.drawInfinitySymbol();
+        infiniteDrawer.drawRotatedInfinitySymbol();
     }
 }

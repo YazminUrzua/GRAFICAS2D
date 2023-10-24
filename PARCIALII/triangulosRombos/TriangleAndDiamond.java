@@ -60,7 +60,7 @@ public class TriangleAndDiamond {
 
     public static void main(String[] args) {
         // Agregar código para reproducir audio
-        playSound("/Users/yazminurzuac/Desktop/6P/GRAFICAS2D/PARCIALII/triangulosRombos/INICIO-DEL-JUEGO-PACMAN_SONIDO_.wav");
+      //  playSound("/Users/yazminurzuac/Desktop/6P/GRAFICAS2D/PARCIALII/triangulosRombos/INICIO-DEL-JUEGO-PACMAN_SONIDO_.wav");
 
         TriangleAndDiamond drawer = new TriangleAndDiamond();
 

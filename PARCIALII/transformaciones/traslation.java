@@ -1,5 +1,5 @@
 package PARCIALII.transformaciones;
-
+import PARCIALII.transformaciones.traslationC;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,6 +8,7 @@ import java.awt.geom.Path2D;
 import java.awt.image.BufferedImage;
 
 public class traslation extends JPanel implements ActionListener {
+    
     private BufferedImage buffer;
     private Graphics2D graPixel;
     private static final int WIDTH = 800;
@@ -19,9 +20,11 @@ public class traslation extends JPanel implements ActionListener {
 
     private double[][] ghostVertices1;
     private double[][] ghostVertices2;
- 
+ private int sizePh = 15;
+
     private double translateX2 = 200;
     private double translateY2 = 0;
+    
 
 
        private double translateX1 = -200;
@@ -38,19 +41,21 @@ public class traslation extends JPanel implements ActionListener {
      
      translateX2 = 200;
      translateY2 = 200;
+ // Define los vértices para el rectángulo (en lugar del triángulo)
+ ghostVertices1 = new double[][] {
+    {-sizePh, -sizePh, 1},
+    {sizePh, -sizePh, 1},
+    {sizePh, sizePh, 1},
+    {-sizePh, sizePh, 1}
+};
 
-        ghostVertices1 = new double[][]{
-            {0, -20, 1},
-            {20, 20, 1},
-            {-20, 20, 1}
-        };
-
-        ghostVertices2 = new double[][]{
-            {0, -20, 1},
-            {20, 20, 1},
-            {-20, 20, 1}
-        };
-    }
+ghostVertices2 = new double[][] {
+    {-sizePh, -sizePh, 1},
+    {sizePh, -sizePh, 1},
+    {sizePh, sizePh, 1},
+    {-sizePh, sizePh, 1}
+};
+}
 
     public void putPixel(int x, int y, Color c) {
         buffer.setRGB(x, y, c.getRGB());
@@ -85,24 +90,34 @@ public class traslation extends JPanel implements ActionListener {
         path.closePath();
         graPixel.fill(path);
 
-        int eyeX1 = (int) (vertices[0][0] + translateX - 8);
+        int eyeX1 = (int) (vertices[0][0] + translateX - 1);
         int eyeY1 = (int) (vertices[0][1] + translateY - 6);
-        int eyeX2 = (int) (vertices[0][0] + translateX + 8);
+
+        int eyeX2 = (int) (vertices[0][0] + translateX + 15);
         int eyeY2 = (int) (vertices[0][1] + translateY - 6);
         int eyeRadius = 4;
+        int head = (int) (vertices[0][0] +translateX);
+        int headY = (int) (vertices[0][1] +translateY-10);
+        int headRadius =15;
+        graPixel.setColor(ghostColor1);
+        graPixel.fillOval(head, headY, headRadius * 2, headRadius * 2);
 
         graPixel.setColor(Color.WHITE);
         graPixel.fillOval(eyeX1, eyeY1, eyeRadius * 2, eyeRadius * 2);
         graPixel.fillOval(eyeX2, eyeY2, eyeRadius * 2, eyeRadius * 2);
 
-        graPixel.setColor(Color.BLACK);
-        graPixel.drawOval(eyeX1, eyeY1, eyeRadius * 2, eyeRadius * 2);
-        graPixel.drawOval(eyeX2, eyeY2, eyeRadius * 2, eyeRadius * 2);
+       graPixel.setColor(Color.BLACK);
+       graPixel.drawOval(eyeX1, eyeY1, eyeRadius * 2, eyeRadius * 2);
+       graPixel.drawOval(eyeX2, eyeY2, eyeRadius * 2, eyeRadius * 2);
+
+       
+        
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         animateGhosts();
+        drawGhost(ghostVertices1, translateX1, translateY1);
         repaint();
     }
 
@@ -125,6 +140,7 @@ public class traslation extends JPanel implements ActionListener {
 
         traslation animation = new traslation();
         frame.add(animation);
+        
 
         frame.setVisible(true);
     }
