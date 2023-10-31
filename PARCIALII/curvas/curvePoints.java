@@ -18,7 +18,7 @@ public class curvePoints {
         int yStep = y1 < y2 ? 1 : -1;
 
         while (x1 != x2 || y1 != y2) {
-            pixel.putPixel(x1, y1, Color.MAGENTA);
+            pixel.putPixel(x1, y1, Color.RED);
             int err2 = 2 * err;
 
             if (err2 > -dy) {
@@ -35,7 +35,7 @@ public class curvePoints {
 
     // y = sen(x) en [0,π] con 8 puntos
     public void curve() {
-        int numPoints = 800; // Aumenta el número de puntos para una curva más suave
+        int numPoints = 100; // Aumenta el número de puntos para una curva más suave
         double π = Math.PI;
         int prevX = 0;
         int prevY = 0;

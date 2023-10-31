@@ -40,13 +40,14 @@ public class InfiniteSymbol {
 
         for (int i = 0; i < numPoints; i++) {
             double t = (i / (double) (numPoints - 1)) * 2 * π;
-            double r = 0.5;
+            double r = 2;
             double x = r * Math.cos(t) / (1 + Math.pow(Math.sin(t), 2));
             double y = r * Math.cos(t) * Math.sin(t) / (1 + Math.pow(Math.sin(t), 2));
 
             // Aplicar traslación para centrar en el centro del frame
-            double xTranslated = x * 50 + 250; 
-            double yTranslated = y * 50 + 250; 
+            double xTranslated = x * 50 + 250; // Centrar en el centro del frame
+            double yTranslated = y * 50 + 250; // Centrar en el centro del frame
+
             // Mapear los valores de x e y a las coordenadas de la ventana
             int xCoord = (int) xTranslated;
             int yCoord = (int) yTranslated;
@@ -59,42 +60,9 @@ public class InfiniteSymbol {
             prevY = yCoord;
         }
     }
-    public void drawRotatedInfinitySymbol() {
-        int numPoints = 50;
-        double π = Math.PI;
-        int prevX = 0;
-        int prevY = 0;
-    
-        for (int i = 0; i < numPoints; i++) {
-            double t = (i / (double) (numPoints - 1)) * 2 * π;
-            double r = 2;
-            double x = r * Math.cos(t) / (1 + Math.pow(Math.sin(t), 2));
-            double y = r * Math.cos(t) * Math.sin(t) / (1 + Math.pow(Math.sin(t), 2));
-    
-            // Rotar 90 grados intercambiando las coordenadas x e y
-            double xRotated = y;
-            double yRotated = x;
-    
-            // Aplicar traslación para centrar verticalmente
-            double xTranslated = xRotated * 50 + 250; // Mantiene la traslación horizontal
-            double yTranslated = yRotated * 50 + 250; // Ajusta la traslación vertical
-            int xCoord = (int) xTranslated;
-            int yCoord = (int) yTranslated;
-    
-            if (i > 0) {
-                drawBresenhamLine(prevX, prevY, xCoord, yCoord);
-            }
-    
-            prevX = xCoord;
-            prevY = yCoord;
-        }
-    }
-    
-    
 
     public static void main(String[] args) {
         InfiniteSymbol infiniteDrawer = new InfiniteSymbol();
         infiniteDrawer.drawInfinitySymbol();
-        infiniteDrawer.drawRotatedInfinitySymbol();
     }
 }

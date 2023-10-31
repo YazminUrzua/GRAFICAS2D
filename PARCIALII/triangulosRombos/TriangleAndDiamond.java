@@ -59,9 +59,7 @@ public class TriangleAndDiamond {
     }
 
     public static void main(String[] args) {
-        // Agregar código para reproducir audio
-      //  playSound("/Users/yazminurzuac/Desktop/6P/GRAFICAS2D/PARCIALII/triangulosRombos/INICIO-DEL-JUEGO-PACMAN_SONIDO_.wav");
-
+   
         TriangleAndDiamond drawer = new TriangleAndDiamond();
 
         int centerX = 150;
@@ -79,15 +77,4 @@ public class TriangleAndDiamond {
         drawer.drawTriangle(x1, y1, x2, y2, x3, y3);
     }
 
-    // Método para reproducir un archivo de sonido
-    public static void playSound(String soundFile) {
-        try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundFile));
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-            clip.start();
-        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-            e.printStackTrace();
-        }
-    }
 }
