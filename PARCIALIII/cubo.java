@@ -125,7 +125,7 @@ public class cubo extends JFrame {
         app.setVisible(true);
 
         // Definir el vector de proyección (xp, yp, zp)
-        double[] projectionVector = {-5, -3, 15};
+        double[] projectionVector = {8, -25, 15};
 
         app.drawCube(100, projectionVector); // Tamaño del cubo y vector de proyección
     }
