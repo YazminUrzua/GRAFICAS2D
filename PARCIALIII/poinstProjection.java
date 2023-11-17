@@ -95,7 +95,7 @@ public class poinstProjection extends JFrame {
     
             if(!(i == numPuntos - 2)) {
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(10);
                     drawLineBresenham((int) xp[i], (int) yp[i], (int) xp[i+1], (int) yp[i+1], Color.BLUE);
                 } catch (Exception e) {
                     // TODO: handle exception

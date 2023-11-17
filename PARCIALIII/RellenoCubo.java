@@ -183,7 +183,7 @@ public class RellenoCubo extends JFrame {
         app.setVisible(true);
 
         // Definir el vector de proyección (xp, yp, zp)
-        double[] projectionVector = {-2, 5, 15};
+        double[] projectionVector = {-2, -20, 8};
 
         app.drawCube(100, projectionVector); // Tamaño del cubo y vector de proyección
     }
