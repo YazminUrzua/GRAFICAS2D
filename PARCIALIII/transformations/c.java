@@ -1,5 +1,6 @@
 package PARCIALIII.transformations;
 
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,34 +9,32 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class TranslatingCube extends JPanel implements ActionListener {
+public class c extends JPanel implements ActionListener {
 
     private BufferedImage buffer;
     private Graphics2D graPixel;
     private static final int WIDTH = 500;
     private static final int HEIGHT = 500;
-    private double translateX = 0;
-    private double translateY = 50;
-    private double translateZ = -30;
+    private double angle = 40;  // Ángulo de rotación alrededor del eje y
     private double[][] cubeVertices;
     private int[][] cubeEdges;
     private int[][] cubeFaces;
     private Color backgroundColor = Color.BLACK;
-    private Color cubeColor = Color.MAGENTA; // Relleno rosa
+    private Color cubeColor = Color.blue; // Relleno rosa
     private Color borderColor = Color.BLACK; // Contorno negro
     private boolean increasing = true;
 
-    public TranslatingCube() {
+    public c() {
         buffer = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
         graPixel = buffer.createGraphics();
         Timer timer = new Timer(100, this);
         timer.start();
 
         cubeVertices = new double[][]{
-                {-25, -25, -25, 2},
-                {25, -25, -25, 2},
-                {25, 25, -25, 2},
-                {-25, 25, -25, 2},
+                {-25, -25, -25, 1}, // Cambiado a coordenada homogénea 1
+                {25, -25, -25, 1},
+                {25, 25, -25, 1},
+                {-25, 25, -25, 1},
                 {-25, -25, 25, 1},
                 {25, -25, 25, 1},
                 {25, 25, 25, 1},
@@ -69,14 +68,34 @@ public class TranslatingCube extends JPanel implements ActionListener {
         graPixel.setColor(backgroundColor);
         graPixel.fillRect(0, 0, WIDTH, HEIGHT);
 
-        double[][] translationMatrix = {
-                {1, 0, 0, translateX},
-                {0, 1, 0, translateY},
-                {0, 0, 1, translateZ},
+        // Rotación en el eje x
+        double[][] rotationMatrixX = {
+                {1, 0, 0, 0},
+                {0, Math.cos(angle), -Math.sin(angle), 0},
+                {0, Math.sin(angle), Math.cos(angle), 0},
                 {0, 0, 0, 1}
         };
 
-        double[][] transformationMatrix = translationMatrix;
+        // Rotación en el eje y
+        double[][] rotationMatrixY = {
+                {Math.cos(angle), 0, Math.sin(angle), 0},
+                {0, 1, 0, 0},
+                {-Math.sin(angle), 0, Math.cos(angle), 0},
+                {0, 0, 0, 1}
+        };
+
+        // Rotación en el eje z
+        double[][] rotationMatrixZ = {
+                {Math.cos(angle), -Math.sin(angle), 0, 0},
+                {Math.sin(angle), Math.cos(angle), 0, 0},
+                {0, 0, 1, 0},
+                {0, 0, 0, 1}
+        };
+
+        // Combinar las matrices de rotación en torno a x, y, y z
+        double[][] combinedRotationMatrix = multiplyMatrices(rotationMatrixX, multiplyMatrices(rotationMatrixY, rotationMatrixZ));
+
+        double[][] transformationMatrix = combinedRotationMatrix;
 
         double[][] cubeTransformed = new double[cubeVertices.length][4];
 
@@ -91,29 +110,15 @@ public class TranslatingCube extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (increasing) {
-            translateX += 5;
-            translateY += 5;
-            translateZ += 5;
-            if (translateX >= WIDTH / 2) {
-                increasing = false;
-            }
-        } else {
-            translateX -= 5;
-            translateY -= 5;
-            translateZ -= 5;
-            if (translateX <= -WIDTH / 2) {
-                increasing = true;
-            }
-        }
+        angle += Math.toRadians(1); // Aumentar el ángulo en radianes
         repaint();
     }
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Cube Animation traslation");
+        JFrame frame = new JFrame("Rotating Cube Animation (x, y, z)");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(WIDTH, HEIGHT);
-        TranslatingCube animation = new TranslatingCube();
+        c animation = new c();
         frame.add(animation);
         frame.setVisible(true);
     }
@@ -161,49 +166,48 @@ public class TranslatingCube extends JPanel implements ActionListener {
     }
 
     private void drawFilledPolygon(int[] xPoints, int[] yPoints, Color fillColor) {
-    int minY = Integer.MAX_VALUE;
-    int maxY = Integer.MIN_VALUE;
+        int minY = Integer.MAX_VALUE;
+        int maxY = Integer.MIN_VALUE;
 
-    // Encontrar los límites verticalmente
-    for (int y : yPoints) {
-        if (y < minY) minY = y;
-        if (y > maxY) maxY = y;
-    }
+        // Encontrar los límites verticalmente
+        for (int y : yPoints) {
+            if (y < minY) minY = y;
+            if (y > maxY) maxY = y;
+        }
 
-    // Iterar verticalmente dentro de los límites de la figura
-    for (int y = minY; y <= maxY; y++) {
-        ArrayList <Integer> intersections = new ArrayList<>();
+        // Iterar verticalmente dentro de los límites de la figura
+        for (int y = minY; y <= maxY; y++) {
+            ArrayList<Integer> intersections = new ArrayList<>();
 
-        // Encontrar intersecciones con las aristas
-        for (int i = 0; i < xPoints.length; i++) {
-            int j = (i + 1) % xPoints.length;
+            // Encontrar intersecciones con las aristas
+            for (int i = 0; i < xPoints.length; i++) {
+                int j = (i + 1) % xPoints.length;
 
-            int yi = yPoints[i];
-            int yj = yPoints[j];
+                int yi = yPoints[i];
+                int yj = yPoints[j];
 
-            if ((yi <= y && yj > y) || (yj <= y && yi > y)) {
-                double x = (double) (xPoints[i] + (double) (y - yi) / (double) (yj - yi) * (xPoints[j] - xPoints[i]));
+                if ((yi <= y && yj > y) || (yj <= y && yi > y)) {
+                    double x = (double) (xPoints[i] + (double) (y - yi) / (double) (yj - yi) * (xPoints[j] - xPoints[i]));
 
-                // Evitar que las intersecciones estén fuera de los límites horizontales
-                if (x >= 0 && x < WIDTH) {
-                    intersections.add((int) x);
+                    // Evitar que las intersecciones estén fuera de los límites horizontales
+                    if (x >= 0 && x < WIDTH) {
+                        intersections.add((int) x);
+                    }
+                }
+            }
+
+            // Ordenar las intersecciones y dibujar líneas horizontales entre pares de intersecciones
+            Collections.sort(intersections);
+            for (int i = 0; i < intersections.size(); i += 2) {
+                int x1 = intersections.get(i);
+                int x2 = intersections.get(i + 1);
+
+                for (int x = x1; x <= x2; x++) {
+                    putPixel(x, y, fillColor);
                 }
             }
         }
-
-        // Ordenar las intersecciones y dibujar líneas horizontales entre pares de intersecciones
-        Collections.sort(intersections);
-        for (int i = 0; i < intersections.size(); i += 2) {
-            int x1 = intersections.get(i);
-            int x2 = intersections.get(i + 1);
-
-            for (int x = x1; x <= x2; x++) {
-                putPixel(x, y, fillColor);
-            }
-        }
     }
-}
-
 
     private void drawBresenhamLine(int x1, int y1, int x2, int y2) {
         int dx = Math.abs(x2 - x1);
@@ -227,5 +231,28 @@ public class TranslatingCube extends JPanel implements ActionListener {
                 y1 = y1 + sy;
             }
         }
+    }
+
+    private double[][] multiplyMatrices(double[][] matrix1, double[][] matrix2) {
+        int m1Rows = matrix1.length;
+        int m1Cols = matrix1[0].length;
+        int m2Rows = matrix2.length;
+        int m2Cols = matrix2[0].length;
+
+        if (m1Cols != m2Rows) {
+            throw new IllegalArgumentException("Matrices cannot be multiplied");
+        }
+
+        double[][] result = new double[m1Rows][m2Cols];
+
+        for (int i = 0; i < m1Rows; i++) {
+            for (int j = 0; j < m2Cols; j++) {
+                for (int k = 0; k < m1Cols; k++) {
+                    result[i][j] += matrix1[i][k] * matrix2[k][j];
+                }
+            }
+        }
+
+        return result;
     }
 }

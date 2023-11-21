@@ -14,7 +14,7 @@ public class RotatingCubeNoTras extends JPanel implements ActionListener {
     private Graphics2D graPixel;
     private static final int WIDTH = 500;
     private static final int HEIGHT = 500;
-    private double angle = 0;  // Ángulo de rotación alrededor del eje y
+    private double angle = 40;  // Ángulo de rotación alrededor del eje y
     private double[][] cubeVertices;
     private int[][] cubeEdges;
     private int[][] cubeFaces;
@@ -69,13 +69,13 @@ public class RotatingCubeNoTras extends JPanel implements ActionListener {
 
              
        //rotacion en y 
-       double[][] rotationMatrix = {
-        {Math.cos(angle), 0, -Math.sin(angle), 0},
-        {0, 1, 0, 0},
-        {Math.sin(angle), 0, Math.cos(angle), 0},
-        {0, 0, 0, 1}
-};
-/* 
+      // double[][] rotationMatrix = {
+       // {Math.cos(angle), 0, -Math.sin(angle), 0},
+      //  {0, 1, 0, 0},
+      //  {Math.sin(angle), 0, Math.cos(angle), 0},
+      //  {0, 0, 0, 1}
+//};
+
 //rotacion en x
 double[][] rotationMatrix = {
         {1, 0, 0, 0},
@@ -83,7 +83,7 @@ double[][] rotationMatrix = {
         {0, -Math.sin(angle),Math.cos(angle), 0},
         {0, 0, 0, 1}
 };
-*/
+
         double[][] transformationMatrix = rotationMatrix;
 
         double[][] cubeTransformed = new double[cubeVertices.length][4];
@@ -99,7 +99,7 @@ double[][] rotationMatrix = {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        angle += Math.toRadians(5); // Aumentar el ángulo en radianes
+        angle += Math.toRadians(65); // Aumentar el ángulo en radianes
         repaint();
     }
 

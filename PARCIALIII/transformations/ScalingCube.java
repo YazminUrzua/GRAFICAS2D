@@ -31,7 +31,7 @@ public class ScalingCube extends JPanel implements ActionListener {
     public ScalingCube() {
         buffer = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
         graPixel = buffer.createGraphics();
-        Timer timer = new Timer(1500, this);
+        Timer timer = new Timer(300, this);
         timer.start();
 
         cubeVertices = new double[][]{
@@ -109,9 +109,9 @@ public class ScalingCube extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (increasing) {
-            translateX += 5;
-            translateY += 5;
-            translateZ += 5;
+            translateX += 3;
+            translateY += 3;
+            translateZ += 3;
             scaleX += 0.1;
             scaleY += 0.1;
             scaleZ += 0.1;
@@ -119,9 +119,9 @@ public class ScalingCube extends JPanel implements ActionListener {
                 increasing = false;
             }
         } else {
-            translateX -= 5;
-            translateY -= 5;
-            translateZ -= 5;
+            translateX -= 3;
+            translateY -= 3;
+            translateZ -= 3;
             scaleX -= 0.1;
             scaleY -= 0.1;
             scaleZ -= 0.1;
